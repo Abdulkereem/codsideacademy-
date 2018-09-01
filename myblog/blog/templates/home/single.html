@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!--[if lt IE 8 ]><html class="no-js ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="no-js ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js ie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+{% include 'home/header.html' %}
+   <!-- Content
+   ================================================== -->
+   <div id="content-wrap">
+
+   	<div class="row">
+
+   		<div id="main" class="eight columns">
+
+   			<article class="entry">
+
+					<header class="entry-header">
+
+						<h2 class="entry-title">
+							{{post.title}}
+						</h2> 				 
+				
+						<div class="entry-meta">
+							<ul>
+								<li>{{post.date_posted.strftime('%B %d, %Y,%X') }}</li>
+								<span class="meta-sep">&bull;</span>							
+								<span class="meta-sep">&bull;</span>
+								<li><b>Posted By</b>  {{post.author}}</li>
+							</ul>
+						</div> 
+				 
+					</header> 
+				
+					<div class="entry-content-media">
+						<div class="post-thumb">
+							<img src="{{post.image_url}}">
+						</div> 
+					</div>
+
+					<div class="entry-content">
+						<p class="lead">{{post.content |safe}}</p>
+					</div>
+
+					<p class="tags">
+  			         <span>Tagged in </span>:
+  				      <a href="#">orci</a>, <a href="#">lectus</a>, <a href="#">varius</a>, <a href="#">turpis</a>
+  			       </p> 
+
+  			       <ul class="post-nav group">
+  			            <li class="prev"><a rel="prev" href="#"><strong>Previous Article</strong> Duis Sed Odio Sit Amet Nibh Vulputate</a></li>
+  				         <li class="next"><a rel="next" href="#"><strong>Next Article</strong> Morbi Elit Consequat Ipsum</a></li>
+  			        </ul>
+
+				</article>
+
+
+
+{% if current_user.is_authenticated %}
+
+
+
+				<!-- Comments
+            ================================================== -->
+            {{comment_api.code|safe}}
+
+{% else %}
+  <h1>login to comment</h1>
+                            
+{% endif %}
+               </center>
+   			<div class="widget widget_categories group">
+   				<h3>Tutorials.</h3> 
+   				{% for posts in threads.items %}
+          <ul>
+            <li><a href="#" title="">{{posts.title}}</a> ({{posts.total_read}})</li>            
+          </ul>
+               {% endfor %}
+				</div>
+
+				<div class="widget widget_text group">
+					<h3>Widget Text.</h3>
+
+   				<p>Lorem ipsum Ullamco commodo laboris sit dolore commodo aliquip incididunt fugiat esse dolor aute fugiat minim eiusmod do velit labore fugiat officia ad sit culpa labore in consectetur sint cillum sint consectetur voluptate adipisicing Duis irure magna ut sit amet reprehenderit.</p>
+
+   			</div>
+
+   			<div class="widget widget_tags">
+               <h3>Post Tags.</h3>
+
+               <div class="tagcloud group">
+                	{% for page in threads.items %}
+               <div class="tagcloud group">
+                  <a href="#">{{page.title}}</a>
+               </div>
+               {% endfor %}
+               </div>
+                  
+            </div>
+
+            
+   			
+   		</div> <!-- end sidebar -->
+
+  		</div> <!-- end row -->
+
+   </div> <!-- end content-wrap -->   
+
+   <!-- Footer
+   ================================================== -->
+   {% include 'home/footer.html' %}
+
+</body>
+
+</html>
